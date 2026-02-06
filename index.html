@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- Border Images Container -->
+    <div class="border-container">
+        <!-- Top Border -->
+        <div class="border-top">
+            <img src="./images/IMG_5540.JPG" alt="Photo" class="border-photo shift-5540">
+            <img src="./images/IMG_5640.JPG" alt="Photo" class="border-photo">
+            <img src="./images/WhatsApp Image 2026-02-06 at 19.02.57.jpeg" alt="Photo" class="border-photo">
+            <img src="./images/WhatsApp Image 2026-02-06 at 18.42.02 (2).jpeg" alt="Photo" class="border-photo shift-4">
+        </div>
+        
+        <!-- Left Border -->
+        <div class="border-left">
+            <img src="./images/WhatsApp Image 2026-02-06 at 18.42.02.jpeg" alt="Photo" class="border-photo">
+            <img src="./images/IMG_8636.JPG" alt="Photo" class="border-photo shift-left">
+        </div>
+        
+        <!-- Right Border -->
+        <div class="border-right">
+            <img src="./images/IMG_8558.JPEG" alt="Photo" class="border-photo shift-left">
+            <img src="./images/WhatsApp Image 2026-02-06 at 18.42.02 (1).jpeg" alt="Photo" class="border-photo shift-8">
+        </div>
+        
+        <!-- Bottom Border -->
+        <div class="border-bottom">
+            <img src="./images/WhatsApp Image 2026-02-06 at 18.42.02 (3).jpeg" alt="Photo" class="border-photo">
+            <img src="./images/IMG_5683.JPG" alt="Photo" class="border-photo shift-down">
+            <img src="./images/WhatsApp Image 2026-02-06 at 18.42.02 (4).jpeg" alt="Photo" class="border-photo shift-11">
+            <img src="./images/IMG_8584.JPEG" alt="Photo" class="border-photo shift-12">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Floating hearts in main content -->
+        <div class="floating-hearts" aria-hidden="true">
+            <span class="heart-emoji">💕</span>
+            <span class="heart-emoji">💖</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💝</span>
+            <span class="heart-emoji">💞</span>
+            <span class="heart-emoji">💕</span>
+            <span class="heart-emoji">💖</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💝</span>
+            <span class="heart-emoji">💞</span>
+            <span class="heart-emoji">💕</span>
+            <span class="heart-emoji">💖</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💝</span>
+            <span class="heart-emoji">💞</span>
+        </div>
+        <div class="center">
+            <div class="heart">
+                <svg class="heart-svg" viewBox="0 0 512 512" aria-hidden="true">
+                    <defs>
+                        <radialGradient id="heartGrad" cx="30%" cy="25%" r="80%">
+                            <stop offset="0%" stop-color="#ffd1e8" />
+                            <stop offset="100%" stop-color="#ff6aa6" />
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Optical centering: lift the heart shape slightly -->
+                    <g transform="translate(0,-18)">
+                        <path
+                            fill="url(#heartGrad)"
+                            d="M256 472s-28-18-56-39C123 384 48 318 48 220 48 149 104 96 176 96c42 0 78 20 100 52 22-32 58-52 100-52 72 0 128 53 128 124 0 98-75 164-152 213-28 21-56 39-56 39z"
+                        />
+                    </g>
+                </svg>
+
+                <div class="heart-content">
+                    <h1>Will you be my Valentine?</h1>
+
+                    <div class="btn-row">
+                        <button id="yesBtn" class="btn">Yes 💗</button>
+                        <button id="noBtn" class="btn">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Screen (Hidden Initially) -->
+    <section class="success-screen" id="successScreen" aria-hidden="true">
+        <div class="success-content">
+            <h2 class="success-title">I knew you'd say yes 💗</h2>
+            <p class="success-message">Here's what we're doing on the 17th</p>
+
+            <div class="itinerary">
+                <!-- ITEM 1 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-hotel.jpg" alt="Hotel" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">12:30</div>
+                        <div class="itinerary-title">Hotel surprise + gifts</div>
+                        <div class="itinerary-desc">You arrive, room is decorated, and you open your surprises.</div>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-vr.jpg" alt="VR experience" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">2:30</div>
+                        <div class="itinerary-title">VR in Covent Garden</div>
+                        <div class="itinerary-desc">A little fun chaos (for me 😌) and a cute memory together.</div>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-chill.jpg" alt="Chill time" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">4:00</div>
+                        <div class="itinerary-title">Back to the room</div>
+                        <div class="itinerary-desc">Chill, reset, take our time, and get ready properly.</div>
+                    </div>
+                </div>
+
+                <!-- ITEM 4 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-roka.jpg" alt="ROKA dinner" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">5:30–7:30</div>
+                        <div class="itinerary-title">Dinner at ROKA</div>
+                        <div class="itinerary-desc">Dress up, good food, cute pics, and vibes.</div>
+                    </div>
+                </div>
+
+                <!-- ITEM 5 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-jazz.jpg" alt="Jazz night" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">8:30–10:00</div>
+                        <div class="itinerary-title">Live jazz at Boisdale</div>
+                        <div class="itinerary-desc">Music, drinks, and the romantic part of the night.</div>
+                    </div>
+                </div>
+
+                <!-- ITEM 6 -->
+                <div class="itinerary-card">
+                    <img class="itinerary-img" src="./images/itinerary-night.jpg" alt="Night" />
+                    <div class="itinerary-text">
+                        <div class="itinerary-time">After</div>
+                        <div class="itinerary-title">Back to the hotel</div>
+                        <div class="itinerary-desc">No rushing. Just us.</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn back-btn" id="backBtn" type="button">Back 💗</button>
+        </div>
+
+        <!-- optional floating hearts if you want -->
+        <div class="floating-hearts" aria-hidden="true">
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💗</span>
+            <span class="heart-emoji">💗</span>
+        </div>
+    </section>
+
+    <script src="./script.js" defer></script>
+</body>
+</html>

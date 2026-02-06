@@ -1,0 +1,609 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+    /* these already include minimums so content never collides */
+    --frame-h: clamp(150px, 25vh, 280px);
+    --frame-w: clamp(120px, 22vw, 300px);
+    --frame-pad: 18px;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #fff5f9 50%, #ffeef8 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ============================================
+   BORDER CONTAINER (Photo Collage Frame)
+   ============================================
+   To change border photos, update the image src paths in index.html
+   To adjust border thickness, modify padding values below
+   ============================================ */
+.border-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.border-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: var(--frame-h);
+    gap: 8px;
+    padding: 8px;
+}
+
+.border-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: var(--frame-h);
+    gap: 8px;
+    padding: 8px;
+}
+
+.border-left,
+.border-right {
+    position: absolute;
+    top: var(--frame-h);
+    bottom: var(--frame-h);
+    width: var(--frame-w);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.border-left {
+    left: 0;
+}
+
+.border-right {
+    right: 0;
+}
+
+.border-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    /* Polaroid/scrapbook effect */
+    background: #fff;
+    padding: 4px;
+}
+
+.border-photo.shift-left {
+    object-position: right center;
+}
+
+.border-photo.shift-right {
+    object-position: 20% center;
+}
+
+.border-photo.shift-down {
+    object-position: center 0%;
+}
+
+.border-photo.shift-5540 {
+    object-position: center 60%;
+}
+
+.border-right .border-photo.shift-8 {
+    object-position: center 70% !important;
+}
+
+.border-photo.shift-11 {
+    object-position: center 30%;
+}
+
+.border-photo.shift-12 {
+    object-position: center 45%;
+}
+
+.border-photo.shift-4 {
+    object-position: center 25%;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.main-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* reserve space for the photo frame on ALL sides */
+    padding:
+        calc(var(--frame-h) + var(--frame-pad))
+        calc(var(--frame-w) + var(--frame-pad))
+        calc(var(--frame-h) + var(--frame-pad))
+        calc(var(--frame-w) + var(--frame-pad));
+    overflow: visible;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.main-content .floating-hearts {
+    z-index: 0; /* Ensure hearts are behind border images */
+}
+
+/* ============================================
+   CENTER LAYOUT
+   ============================================ */
+.center {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+    padding: 24px;
+    overflow: visible;
+}
+
+/* ============================================
+   HEART (SVG - perfect shape)
+   ============================================ */
+.heart {
+    width: min(520px, 78vmin, 90vw);
+    aspect-ratio: 1 / 1;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    overflow: visible;
+}
+
+.heart-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 14px 28px rgba(255, 105, 180, 0.28));
+}
+
+/* Center bubble relative to the HEART (not page/grid) */
+.heart-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-45%, -59%);
+    z-index: 2;
+    width: min(380px, 78vw);
+    padding: 22px 18px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    text-align: center;
+}
+
+.heart h1 {
+    margin: 0 0 14px 0;
+    font-size: clamp(22px, 4vw, 34px);
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ============================================
+   BUTTON ROW: ALWAYS CENTERED
+   ============================================ */
+.btn-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* baseline button styles */
+.btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: transform 180ms ease, opacity 180ms ease;
+    will-change: transform;
+    font-family: 'Inter', sans-serif;
+}
+
+/* yes / no look */
+#yesBtn {
+    background: #ff4f93;
+    color: white;
+    box-shadow: 0 10px 26px rgba(255, 79, 147, 0.35);
+}
+
+#noBtn {
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    position: relative; /* stays in flow until we switch to absolute move mode */
+}
+
+/* when we start evasive movement, no becomes absolute on top */
+#noBtn.evasive {
+    position: absolute;
+    z-index: 20;
+}
+
+/* small "pop" feedback */
+.pop {
+    animation: pop 180ms ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    70% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* ============================================
+   SUCCESS SCREEN
+   ============================================
+   To change the success message, edit the h2 and p in index.html
+   ============================================ */
+.success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffeef8 0%, #fff5f9 50%, #ffeef8 100%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    padding: 20vh 12vw;
+}
+
+.success-screen.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    text-align: center;
+    max-width: 600px;
+    position: relative;
+    z-index: 101;
+}
+
+.success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #ff6b9d;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.success-message {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: #666;
+    font-weight: 300;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   FLOATING HEARTS ANIMATION
+   ============================================
+   To add/remove hearts, edit the span elements in index.html
+   ============================================ */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0; /* behind border images (z-index: 1) */
+}
+
+.heart-emoji {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Randomized positions and delays for higher frequency */
+.heart-emoji:nth-child(1) {
+    left: 15%;
+    animation-delay: 0s;
+    font-size: 1.3rem;
+}
+
+.heart-emoji:nth-child(2) {
+    left: 42%;
+    animation-delay: 0.4s;
+    font-size: 1.6rem;
+}
+
+.heart-emoji:nth-child(3) {
+    left: 68%;
+    animation-delay: 0.8s;
+    font-size: 1.4rem;
+}
+
+.heart-emoji:nth-child(4) {
+    left: 23%;
+    animation-delay: 1.2s;
+    font-size: 1.7rem;
+}
+
+.heart-emoji:nth-child(5) {
+    left: 55%;
+    animation-delay: 1.6s;
+    font-size: 1.5rem;
+}
+
+.heart-emoji:nth-child(6) {
+    left: 81%;
+    animation-delay: 2s;
+    font-size: 1.3rem;
+}
+
+.heart-emoji:nth-child(7) {
+    left: 33%;
+    animation-delay: 2.4s;
+    font-size: 1.6rem;
+}
+
+.heart-emoji:nth-child(8) {
+    left: 61%;
+    animation-delay: 2.8s;
+    font-size: 1.4rem;
+}
+
+.heart-emoji:nth-child(9) {
+    left: 19%;
+    animation-delay: 3.2s;
+    font-size: 1.7rem;
+}
+
+.heart-emoji:nth-child(10) {
+    left: 47%;
+    animation-delay: 3.6s;
+    font-size: 1.5rem;
+}
+
+.heart-emoji:nth-child(11) {
+    left: 74%;
+    animation-delay: 0.2s;
+    font-size: 1.3rem;
+}
+
+.heart-emoji:nth-child(12) {
+    left: 28%;
+    animation-delay: 0.6s;
+    font-size: 1.6rem;
+}
+
+.heart-emoji:nth-child(13) {
+    left: 64%;
+    animation-delay: 1s;
+    font-size: 1.4rem;
+}
+
+.heart-emoji:nth-child(14) {
+    left: 37%;
+    animation-delay: 1.4s;
+    font-size: 1.7rem;
+}
+
+.heart-emoji:nth-child(15) {
+    left: 52%;
+    animation-delay: 1.8s;
+    font-size: 1.5rem;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   Mobile-first: Adjusts for larger screens
+   ============================================ */
+@media (max-width: 768px) {
+    :root {
+        --frame-h: clamp(120px, 22vh, 220px);
+        --frame-w: clamp(100px, 20vw, 240px);
+    }
+    
+    .border-top,
+    .border-bottom {
+        height: var(--frame-h);
+        gap: 4px;
+        padding: 4px;
+    }
+    
+    .border-left,
+    .border-right {
+        width: var(--frame-w);
+        top: var(--frame-h);
+        bottom: var(--frame-h);
+        gap: 4px;
+        padding: 4px;
+    }
+    
+    .success-screen {
+        padding: 15vh 10vw;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --frame-h: clamp(100px, 18vh, 180px);
+        --frame-w: clamp(80px, 18vw, 180px);
+    }
+    
+    .border-top,
+    .border-bottom {
+        height: var(--frame-h);
+    }
+    
+    .border-left,
+    .border-right {
+        width: var(--frame-w);
+        top: var(--frame-h);
+        bottom: var(--frame-h);
+    }
+    
+    .btn-row {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .btn {
+        width: 80%;
+        max-width: 200px;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .heart {
+        animation: none;
+    }
+}
+
+/* ============================================
+   ITINERARY STYLING
+   ============================================ */
+.itinerary {
+    margin-top: 22px;
+    display: grid;
+    gap: 14px;
+    width: min(720px, 92vw);
+}
+
+.itinerary-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.26);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.itinerary-img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.itinerary-time {
+    font-weight: 800;
+    color: #ff4f93;
+    margin-bottom: 4px;
+}
+
+.itinerary-title {
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+.itinerary-desc {
+    color: #666;
+    line-height: 1.35;
+}
+
+.back-btn {
+    margin-top: 18px;
+    background: #ff4f93;
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(255, 79, 147, 0.35);
+    padding: 12px 18px;
+}
+
+@media (max-width: 520px) {
+    .itinerary-card {
+        grid-template-columns: 1fr;
+    }
+    .itinerary-img {
+        width: 100%;
+        height: 150px;
+    }
+}
